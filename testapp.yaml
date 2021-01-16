@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: testapp-replica
+  labels:
+    app: testapp-replica
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp 
+    spec:
+      containers:
+      - name: testapp
+        image: quay.io/urgupta/testapp:v1
+        env:
+          - name: NAME
+            valueFrom:
+              configMapKeyRef:
+                name: testapp-configmap    
+                key: name
+          - name: COLLEGE_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: testapp-configmap    
+                key: college_name
+          - name: ABC
+            value: "Hello from the environment"
+          
+      

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testapp-configmap
+data:
+  name: "Urvashi Gupta"
+  college_name: "G.B. Pant Government Engineering College"
